@@ -1,26 +1,76 @@
+
+/* app/globals.css: replace the whole file */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* 1) Our color + font "tokens". Each line creates Tailwind classes:
+      --color-sage  ->  bg-sage, text-sage, border-sage ...            */
+@theme {
+  --color-bg: #f5f3ef;        /* page background (warm off-white) */
+  --color-surface: #fbfaf7;   /* inputs and cards */
+  --color-warm: #efebe4;      /* info boxes */
+  --color-line: #e2ded6;      /* borders and dividers */
+  --color-sage-50: #e7ebe5;   /* light green highlight */
+  --color-sage: #56695b;      /* main green (buttons, logo) */
+  --color-sage-dark: #46574b; /* button hover */
+  --color-ink: #2f3b45;       /* headings */
+  --color-body: #56616b;      /* normal text */
+  --color-muted: #8c949a;     /* small hints */
+  --color-gold: #b38b4d;      /* little accent */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-dmsans), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-body);
+  font-family: var(--font-sans);
+}
+
+/* 2) Planner fonts. The preview uses these names; the PDF uses the same files. */
+@font-face { font-family: "Cormorant"; src: url("/fonts/Cormorant-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Cormorant"; src: url("/fonts/Cormorant-SemiBold.ttf"); font-weight: 700; }
+@font-face { font-family: "Playfair"; src: url("/fonts/Playfair-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Playfair"; src: url("/fonts/Playfair-SemiBold.ttf"); font-weight: 700; }
+@font-face { font-family: "DMSerif"; src: url("/fonts/DMSerif-Regular.ttf"); font-weight: 400 700; }
+@font-face { font-family: "DMSans"; src: url("/fonts/DMSans-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "DMSans"; src: url("/fonts/DMSans-SemiBold.ttf"); font-weight: 700; }
+@font-face { font-family: "Lora"; src: url("/fonts/Lora-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Lora"; src: url("/fonts/Lora-SemiBold.ttf"); font-weight: 700; }
+@font-face { font-family: "Nunito"; src: url("/fonts/Nunito-Regular.ttf"); font-weight: 400; }
+@font-face { font-family: "Nunito"; src: url("/fonts/Nunito-SemiBold.ttf"); font-weight: 700; }
+
+
+/* 3) Animations */
+/* Each screen slides up and fades in when you move between steps */
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+/* Page thumbnails and cards pop in one after another */
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+/* The moving shine on the loading bar */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+/* The loading message fades in each time it changes */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-screen { animation: screen-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.animate-pop { animation: pop-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.animate-fade { animation: fade-in 0.4s ease both; }
+.loading-bar {
+  background: linear-gradient(90deg, var(--color-sage-50) 0%, var(--color-sage) 50%, var(--color-sage-50) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+/* People who turn off motion in their computer settings get no animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-screen, .animate-pop, .animate-fade, .loading-bar { animation: none; }
 }
