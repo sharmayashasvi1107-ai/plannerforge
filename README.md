@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+PlannerForge
 
-## Getting Started
+PlannerForge is a web app for building your own digital planner. You work through a short series of steps, such as uploading your content and choosing a template, and the app puts the planner together for you.
 
-First, run the development server:
+Built with Next.js, React and Tailwind CSS, and deployed on Vercel.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Live demo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Try it here: https://plannerforge-4f31592gq-sage-2dea.vercel.app/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+No installation is needed. Open the link in any modern browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Project structure
+app/                 Next.js app router (pages and global styles)
+components/shell/    App shell, such as the header
+components/steps/    The step-by-step flow (upload, template, and so on)
+components/ui/       Shared UI pieces, such as the hero section
+About the redesign (upcoming update)
 
-## Learn More
+The version on main is the stable, submitted build. It is the one deployed on Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+A visual redesign of PlannerForge is also in progress. It is not part of the submitted build. It is being developed separately on a redesign branch so that it cannot affect the working app. Some of its work-in-progress files may appear in the project history or in screenshots, so this section explains what they are.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Planned changes in the redesign:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+New colour palette and refreshed global styling.
+PlannerForge logo, used in the header and on the planner's back cover.
+Revolving card ring on the landing screen, where moodboard cards rotate in a single ring. This replaces an earlier globe experiment.
+Notebook-style planner interface, with pages you flip through and the PlannerForge logo printed on the back cover.
+Slide navigation between steps.
+Sample moodboard images shipped with the app for demos.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+None of this is final. The redesign will be merged into main only after it has been tested.
